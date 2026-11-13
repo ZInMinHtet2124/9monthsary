@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy 9 Months Anniversary Koko ❤️</title>
+
+    <!-- App Manifest & Mobile Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
+
+    <!-- FontAwesome, Google Fonts & Swiper CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff8fa3;
+            --gold: #ffd166;
+            --bg-dark: #1a0b12;
+            --glass: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Padauk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1f0812 0%, #3d0c24 50%, #1a0610 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* FLOATING HEARTS BACKGROUND */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(255, 77, 109, 0.35);
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.7; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* LOCK SCREEN (CLEAN & ELEGANT) */
+        #lock-screen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top, #3b0a20, #120309);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #lock-screen.unlocked {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        .lock-icon-wrap {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 18px rgba(255, 77, 109, 0.8));
+            animation: heartbeat 1.6s infinite ease-in-out;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.14); }
+        }
+
+        .lock-title {
+            font-family: 'Playfair Display', 'Poppins', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-align: center;
+            background: linear-gradient(to right, #fff, var(--secondary), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .lock-subtitle {
+            font-size: 0.82rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .error-msg {
+            font-size: 0.82rem;
+            color: var(--gold);
+            min-height: 22px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-msg.show {
+            opacity: 1;
+        }
+
+        .pin-dots {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .dot {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary);
+            transition: all 0.2s ease;
+        }
+
+        .dot.filled {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            transform: scale(1.15);
+        }
+
+        .shake {
+            animation: shakeAnim 0.4s ease;
+        }
+
+        @keyframes shakeAnim {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 70px);
+            gap: 15px;
+        }
+
+        .key {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 1.45rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .key:active {
+            background: var(--primary);
+            transform: scale(0.92);
+        }
+
+        .key.empty {
+            background: transparent;
+            border: none;
+            pointer-events: none;
+        }
+
+        /* MAIN APP CONTAINER (BOOK PAGES) */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 18px 40px;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+
+        .container.visible {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding: 10px 0 18px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), #c9184a);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #fff, var(--secondary), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3px;
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            color: #f8ad9d;
+        }
+
+        /* BOOK PAGES NAVIGATION */
+        .page-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--primary);
+            width: 26px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* BOOK PAGES */
+        .book-page {
+            display: none;
+            animation: pageFade 0.5s ease;
+        }
+
+        .book-page.active-page {
+            display: block;
+        }
+
+        @keyframes pageFade {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* GLASS CARD */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+            border-radius: 22px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* MUSIC PLAYER */
+        .music-player {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 18px;
+        }
+
+        .vinyl {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: conic-gradient(#111, #333, #111, #444, #111);
+            border: 2px solid var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .vinyl.spinning {
+            animation: spin 4s linear infinite;
+        }
+
+        .vinyl::after {
+            content: '';
+            width: 14px;
+            height: 14px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .song-info {
+            flex: 1;
+        }
+
+        .song-info h4 {
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .song-info span {
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: none;
+            color: #fff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 77, 109, 0.5);
+        }
+
+        /* TIMER GRID */
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 10px 4px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .time-box small {
+            font-size: 0.65rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+        }
+
+        /* SWIPER GALLERY (5 PHOTOS) */
+        .swiper {
+            width: 100%;
+            padding-top: 5px;
+            padding-bottom: 25px;
+        }
+
+        .swiper-slide {
+            width: 220px;
+            height: 280px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,255,255,0.2);
+            position: relative;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 18px 10px 8px;
+            font-size: 0.78rem;
+            text-align: center;
+        }
+
+        /* VIDEO PLAYER */
+        .video-box {
+            width: 100%;
+            height: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: #000;
+            border: 1px solid var(--glass-border);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* SECRET LOVE LETTER */
+        .envelope-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff4d6d, #ff758f);
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .letter-content {
+            display: none;
+            margin-top: 15px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2b0916;
+            border-radius: 14px;
+            line-height: 1.85;
+            font-size: 0.9rem;
+            box-shadow: inset 0 0 15px rgba(255, 77, 109, 0.2);
+            animation: slideDown 0.4s ease;
+        }
+
+        .letter-content.open {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* DISTANCE PROMISE CARD */
+        .distance-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--secondary);
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .distance-box h5 {
+            color: var(--gold);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .distance-box p {
+            font-size: 0.82rem;
+            color: #f8ad9d;
+            line-height: 1.6;
+        }
+
+        /* PAGE SWITCH BUTTONS */
+        .page-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+        }
+
+        .page-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            padding: 9px 18px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--secondary);
+            margin-top: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FLOATING HEARTS -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <!-- LOCK SCREEN -->
+    <div id="lock-screen">
+        <div class="lock-icon-wrap">
+            <i class="fas fa-heart"></i>
+        </div>
+        <div class="lock-title">Happy 9Month Anniversary sary pr koko ❤️</div>
+        <div class="lock-subtitle">Enter Passcode to open</div>
+        <div class="error-msg" id="errorMsg">ကိုကိုရေ သေချာပြန်စစ်ပေးပါဦးနော် မှားနေတယ် 🥺❤️</div>
+
+        <div class="pin-dots" id="pinDots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <div class="keypad">
+            <div class="key" onclick="pressKey('1')">1</div>
+            <div class="key" onclick="pressKey('2')">2</div>
+            <div class="key" onclick="pressKey('3')">3</div>
+            <div class="key" onclick="pressKey('4')">4</div>
+            <div class="key" onclick="pressKey('5')">5</div>
+            <div class="key" onclick="pressKey('6')">6</div>
+            <div class="key" onclick="pressKey('7')">7</div>
+            <div class="key" onclick="pressKey('8')">8</div>
+            <div class="key" onclick="pressKey('9')">9</div>
+            <div class="key empty"></div>
+            <div class="key" onclick="pressKey('0')">0</div>
+            <div class="key" onclick="deleteKey()"><i class="fas fa-backspace"></i></div>
+        </div>
+    </div>
+
+    <!-- MAIN APP (BOOK PAGES) -->
+    <div class="container" id="mainApp">
+        <div class="header">
+            <div class="badge">✨ 9 Months Milestone ✨</div>
+            <h1>Happy 9th Monthsarry</h1>
+            <p>For My Beloved Koko • From Babe ❤️</p>
+        </div>
+
+        <!-- PAGE INDICATORS -->
+        <div class="page-nav">
+            <div class="nav-dot active" onclick="switchPage(1)"></div>
+            <div class="nav-dot" onclick="switchPage(2)"></div>
+            <div class="nav-dot" onclick="switchPage(3)"></div>
+        </div>
+
+        <!-- PAGE 1: MUSIC & TIMER & LETTER -->
+        <div class="book-page active-page" id="page1">
+            <!-- MUSIC PLAYER -->
+            <div class="card music-player">
+                <div class="vinyl" id="vinyl"></div>
+                <div class="song-info">
+                    <h4>Our Special Song 🎵</h4>
+                    <span id="musicStatus">Tap play to listen</span>
+                </div>
+                <button class="play-btn" onclick="toggleMusic()">
+                    <i class="fas fa-play" id="playIcon"></i>
+                </button>
+                <audio id="bgMusic" loop>
+                    <source src="song.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <!-- LIVE COUNTER -->
+            <div class="card">
+                <div class="card-title"><i class="fas fa-heart"></i> ကိုကိုနဲ့ အတူရှိခဲ့တဲ့ အချိန်များ</div>
+                <div class="timer-grid">
+                    <div class="time-box">
+                        <span id="days">273</span>
+                        <small>Days</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours">00</span>
+                        <small>Hours</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes">00</span>
+                        <small>Mins</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds">00</span>
+                        <small>Secs</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECRET LOVE LETTER (UPDATED WITH BABE'S MESSAGE) -->
+            <div class="card">
+                <div class="card-title"><i class="fas fa-envelope-open-text"></i> ဘေဘီရဲ့ ရင်တွင်းစကား</div>
+                <button class="envelope-btn" onclick="toggleLetter()">
+                    <i class="fas fa-heart"></i> စာအိတ်လေးကို ဖွင့်ဖတ်ပါ ကိုကို
+                </button>
+                <div class="letter-content" id="letterContent">
+                    <strong>Happy 9 Months Anniversary ပါ ကိုရေ🫀🌍❤️</strong><br><br>
+                    ဘေဘီတို့နှစ်ယောက် ချစ်သူဖြစ်လာတာ ၉ လတောင်ရှိခဲ့ပြီနော်။ အချိန်တွေကလည်း တကယ်မြန်တယ်။ ဒီ ၉ လအတွင်းမှာ ပျော်ခဲ့ရတာတွေလည်းရှိသလို တစ်ယောက်နဲ့တစ်ယောက် နားလည်ပေးရင်း ဖြတ်သန်းခဲ့ရတာတွေလည်းရှိတယ်။ ဘာပဲဖြစ်ဖြစ် ကိုနဲ့အတူရှိခဲ့တဲ့ အချိန်လေးတွေက ဘေဘီ့အတွက်တော့ တန်ဖိုးရှိတဲ့ အမှတ်တရတွေပါပဲ。<br><br>
+                    အခုလို ကိုက Ship ပေါ်မှာ၊ ဘေဘီက ကုန်းပေါ်မှာ တစ်ယောက်တစ်နေရာစီဖြစ်နေရတော့ တစ်ခါတလေ အရမ်းလွမ်းတယ်။ ကို့အနားမှာသာရှိရင် ဂရုစိုက်ပေးချင်တာတွေ၊ ပြောပြချင်တာတွေ အများကြီးပဲ။ အဝေးမှာရှိနေပေမဲ့ ကိုအဆင်ပြေရဲ့လား၊ ပင်ပန်းနေလား၊ အစားမှန်မှန်စားရဲ့လားဆိုတာ အမြဲတွေးမိတယ်။<br><br>
+                    Ship ပေါ်မှာ အလုပ်လုပ်တဲ့အခါလည်း ကိုယ့်ကိုယ်ကိုယ် သေချာဂရုစိုက်ပါနော်။ အလုပ်မှာ ဘေးကင်းဖို့က အရေးကြီးဆုံးပဲ။ အိပ်ရေးဝအောင်အိပ်၊ အစားမှန်မှန်စားပြီး နေမကောင်းတာမျိုးလည်း မဖြစ်ပါစေနဲ့။ ဘေဘီ့အနားမှာ မရှိပေးနိုင်ပေမဲ့ ကို့အတွက်တော့ အမြဲစိတ်ပူနေတယ်နော်။<br><br>
+                    ကိုပြန်လာမယ့်ရက်ကိုလည်း ဘေဘီ အရမ်းမျှော်နေပါတယ်။ ပြန်ရောက်လာရင် အတူတူခရီးတွေထွက်ကြမယ်နော်။ ကိုနဲ့အတူ မရောက်ဖူးသေးတဲ့နေရာလေးတွေ သွားချင်တယ်၊ ဓာတ်ပုံတွေရိုက်ချင်တယ်၊ နှစ်ယောက်တည်း အမှတ်တရလေးတွေ အများကြီးဖန်တီးချင်တယ်။ အခုလို ဖုန်းထဲကနေပဲ လွမ်းနေပြောနေရတာတွေထက် အနားမှာအတူရှိနေရတဲ့နေ့တွေကို ပိုလိုချင်တယ်။<br><br>
+                    ဘေဘီတို့နှစ်ယောက်လည်း ရှေ့လျှောက် အခုထက်ပိုပြီး နားလည်ပေးကြမယ်၊ ယုံကြည်မှုရှိရှိနဲ့ အတူတူရှေ့ဆက်ကြမယ်နော်။ အမြဲတမ်း အဆင်ပြေနေဖို့ထက် ဘယ်လိုအခြေအနေမျိုးပဲဖြစ်ဖြစ် တစ်ယောက်ကိုတစ်ယောက် နားလည်ပေးနိုင်ကြမယ်နော်。<br><br>
+                    ကို့ကို အရမ်းလွမ်းတယ်နော်။ ကိုလည်း အလုပ်တွေကြားထဲမှာ ဘေဘီ့ကို သတိရပေးနော်။ အရေးကြီးဆုံးကတော့ ဘေးကင်းကျန်းမာဖို့ရယ် စိတ်ချမ်းသာစေဖို့ရယ် ကိုပြန်လာမယ့်နေ့လေးကို ဘေဘီ စောင့်နေမယ် ပြန်လာရင် လာကြိုချင်တယ် နောက်ထပ်လတွေ၊ နှစ်တွေ အများကြီးကိုနဲ့အတူတူနားလည်မှုရှိရှိ ပိုပိုချစ်ပြီး ဖြတ်သန်းသွားကြမယ်နော်။<br><br>
+                    <strong>ချစ်တယ်နော် ကိုရေ🫀😍😘</strong>
+                </div>
+            </div>
+
+            <div class="page-btns">
+                <div></div>
+                <button class="page-btn" onclick="switchPage(2)">နောက်မျက်နှာ <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- PAGE 2: 3D PHOTO GALLERY (5 PHOTOS) -->
+        <div class="book-page" id="page2">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-camera-retro"></i> အမှတ်တရ ပုံရိပ် (၅) ပုံ</div>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="photo1.jpg" alt="Memory 1" onerror="this.src='https://via.placeholder.com/300x400/ff4d6d/ffffff?text=Photo+1'">
+                            <div class="slide-caption">ကိုကိုနဲ့ ပထမဆုံး ပုံရိပ်လေး ❤️</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="photo2.jpg" alt="Memory 2" onerror="this.src='https://via.placeholder.com/300x400/ff758f/ffffff?text=Photo+2'">
+                            <div class="slide-caption">အမြဲတမ်း ပြုံးနေစေချင်တယ် ✨</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="photo3.jpg" alt="Memory 3" onerror="this.src='https://via.placeholder.com/300x400/c9184a/ffffff?text=Photo+3'">
+                            <div class="slide-caption">အလွမ်းပြေ အမှတ်တရလေးများ 🌙</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="photo4.jpg" alt="Memory 4" onerror="this.src='https://via.placeholder.com/300x400/ffb703/ffffff?text=Photo+4'">
+                            <div class="slide-caption">လက်တွဲထားမယ့် ခရီးလမ်း 💍</div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="photo5.jpg" alt="Memory 5" onerror="this.src='https://via.placeholder.com/300x400/fb8500/ffffff?text=Photo+5'">
+                            <div class="slide-caption">၉ လပြည့် အထူးအမှတ်တရ 🥂</div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="page-btns">
+                <button class="page-btn" onclick="switchPage(1)"><i class="fas fa-arrow-left"></i> ရှေ့မျက်နှာ</button>
+                <button class="page-btn" onclick="switchPage(3)">နောက်မျက်နှာ <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- PAGE 3: VIDEO & DISTANCE PROMISE -->
+        <div class="book-page" id="page3">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-film"></i> ကိုကို့အတွက် အမှတ်တရ ဗီဒီယို</div>
+                <div class="video-box">
+                    <video controls playsinline poster="photo1.jpg">
+                        <source src="video.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <!-- DISTANCE PROMISE CARD -->
+            <div class="card">
+                <div class="distance-box">
+                    <h5>🌍 ဝေးနေပေမယ့် နီးစပ်နေတဲ့ အချစ်</h5>
+                    <p>မိုင်ပေါင်းများစွာ ခြားနေပေမယ့် ကိုကို့ကို ချစ်တဲ့ ဘေဘီ့ရဲ့ စိတ်နှလုံးသားက အမြဲတမ်း ကိုကို့အနားမှာ ရှိနေပါတယ်နော်။ ၉ လပြည့်ကနေ နောင်နှစ်ပေါင်းများစွာထိ အတူတူ ဆက်လျှောက်ကြမယ် ကိုကိုရေ...</p>
+                </div>
+            </div>
+
+            <div class="page-btns">
+                <button class="page-btn" onclick="switchPage(2)"><i class="fas fa-arrow-left"></i> ရှေ့မျက်နှာ</button>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Made with ❤️ for Koko • 9 Months Anniversary
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        // 1. PASSCODE LOGIC (1422026)
+        const CORRECT_PIN = "1422026";
+        let currentPin = "";
+
+        function pressKey(num) {
+            document.getElementById('errorMsg').classList.remove('show');
+            if (currentPin.length < 7) {
+                currentPin += num;
+                updateDots();
+                if (currentPin.length === 7) {
+                    checkPin();
+                }
+            }
+        }
+
+        function deleteKey() {
+            currentPin = currentPin.slice(0, -1);
+            updateDots();
+        }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('filled', idx < currentPin.length);
+            });
+        }
+
+        function checkPin() {
+            if (currentPin === CORRECT_PIN) {
+                document.getElementById('lock-screen').classList.add('unlocked');
+                document.getElementById('mainApp').classList.add('visible');
+                triggerFireworks();
+                const audio = document.getElementById('bgMusic');
+                audio.play().then(() => {
+                    document.getElementById('vinyl').classList.add('spinning');
+                    document.getElementById('playIcon').className = 'fas fa-pause';
+                    document.getElementById('musicStatus').innerText = 'Playing our song...';
+                }).catch(() => {});
+            } else {
+                const pinDots = document.getElementById('pinDots');
+                const errorMsg = document.getElementById('errorMsg');
+                pinDots.classList.add('shake');
+                errorMsg.classList.add('show');
+                setTimeout(() => {
+                    pinDots.classList.remove('shake');
+                    currentPin = "";
+                    updateDots();
+                }, 400);
+            }
+        }
+
+        // 2. FIREWORKS
+        function triggerFireworks() {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        }
+
+        // 3. FLOATING HEARTS
+        function createHearts() {
+            const container = document.getElementById('heartsBg');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fas fa-heart floating-heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 14 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 6 + 6) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // 4. BOOK PAGE SWITCHING
+        function switchPage(pageNum) {
+            document.querySelectorAll('.book-page').forEach(p => p.classList.remove('active-page'));
+            document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+
+            document.getElementById('page' + pageNum).classList.add('active-page');
+            document.querySelectorAll('.nav-dot')[pageNum - 1].classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 5. LIVE TIMER (Starts from Feb 14, 2026)
+        const startDate = new Date("2026-02-14T00:00:00").getTime();
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = now - startDate;
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+            }
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // 6. MUSIC TOGGLE
+        function toggleMusic() {
+            const audio = document.getElementById('bgMusic');
+            const vinyl = document.getElementById('vinyl');
+            const icon = document.getElementById('playIcon');
+            const status = document.getElementById('musicStatus');
+
+            if (audio.paused) {
+                audio.play();
+                vinyl.classList.add('spinning');
+                icon.className = 'fas fa-pause';
+                status.innerText = 'Playing our song...';
+            } else {
+                audio.pause();
+                vinyl.classList.remove('spinning');
+                icon.className = 'fas fa-play';
+                status.innerText = 'Music paused';
+            }
+        }
+
+        // 7. SWIPER 3D GALLERY (5 PHOTOS)
+        new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 20,
+                stretch: 0,
+                depth: 90,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+        });
+
+        // 8. TOGGLE LOVE LETTER
+        function toggleLetter() {
+            const letter = document.getElementById('letterContent');
+            letter.classList.toggle('open');
+            if (letter.classList.contains('open')) {
+                confetti({ particleCount: 40, spread: 50, origin: { y: 0.7 } });
+            }
+        }
+    </script>
+</body>
+</html>
